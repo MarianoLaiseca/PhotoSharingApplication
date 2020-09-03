@@ -1,0 +1,100 @@
+﻿@model PhotoSharingApplication.Models.Photo
+
+@{
+    ViewBag.Title = Model.Title;
+}
+
+<h2>Display</h2>
+
+<div>
+    <h4>Photo</h4>
+    <hr />
+    <div class="photo-metadata">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+                @if (Model.PhotoFile != null)
+                {
+                    <img width="800" src="@Url.Action("GetImage", "Photo", new { id=Model.PhotoID })" />
+                }
+            </dd>
+
+            <dt>
+                <span class="display-label">
+                    Created By:
+                </span>
+            </dt>
+            <dd>
+                <span class="display-field">
+                    @Html.DisplayFor(model => model.UserName)
+                </span>
+            </dd>
+
+            <dt>
+                <span class="display-label">
+                    Created On:
+                </span>
+            </dt>
+            <dd>
+                <span class="display-field">
+                    @Html.DisplayFor(model => model.CreatedDate)
+                </span>
+            </dd>
+
+            <dt>
+                <span class="display-label">
+                    @Html.DisplayNameFor(model => model.ImageMimeType)
+                </span>
+            </dt>
+            <dd>
+                <span class="display-field">
+                    @Html.DisplayFor(model => model.ImageMimeType)
+                </span>
+            </dd>
+
+            <dt>
+                <span class="display-label">
+                    @Html.DisplayNameFor(model => model.Description)
+                </span>
+            </dt>
+            <dd>
+                <span class="display-field">
+                    @Html.DisplayFor(model => model.Description)
+                </span>
+            </dd>
+
+            <dt>
+                <span class="display-label">
+                    @Html.DisplayNameFor(model => model.CreatedDate)
+                </span>
+            </dt>
+            <dd>
+                <span class="display-field">
+                    @Html.DisplayFor(model => model.CreatedDate)
+                </span>
+            </dd>
+
+            <dt>
+                <span class="display-label">
+                    @Html.DisplayNameFor(model => model.UserName)
+                </span>
+            </dt>
+            <dd>
+                <span class="display-field">
+                    @Html.DisplayFor(model => model.UserName)
+                </span>
+            </dd>
+        </dl>
+    </div>
+</div>
+
+@Html.Action("_CommentsForPhoto", "Comment", new { PhotoId = Model.PhotoID })
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PhotoID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
