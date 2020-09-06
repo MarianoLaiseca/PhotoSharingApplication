@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -38,7 +43,13 @@
         </div>
 
         <div id="breadcrumb">
-            Current Location: @Html.MvcSiteMap().SiteMapPath()
+            @Html.MvcSiteMap().SiteMapPath()
+            @if (Session["Favorites"] != null)
+            {
+                <div id="favorites-link">
+                    @Html.ActionLink("Favorite Photos", "FavoritesSlideShow", "Photo")
+                </div>
+            }
         </div>
 
         <div>
