@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -18,6 +23,20 @@
     <div>
         <h1 class="site-page-title">Adventure Works Photo Sharing</h1>
 
+        <div class="login-controls">
+            @if (Request.IsAuthenticated)
+            {
+                @:Hello, @User.Identity.Name
+                @Html.ActionLink("Log Off", "LogOff", "Account")
+                @Html.ActionLink("Reset", "ResetPassword", "Account")
+            }
+            else
+            {
+                @Html.ActionLink("Log In", "Login", "Account")
+                @Html.ActionLink("Register", "Register", "Account")
+            }
+        </div>
+
         <div class="clear-floats" />
 
         <div id="topmenu">
@@ -25,7 +44,13 @@
         </div>
 
         <div id="breadcrumb">
-            Current Location: @Html.MvcSiteMap().SiteMapPath()
+            @Html.MvcSiteMap().SiteMapPath()
+            @if (Session["Favorites"] != null)
+            {
+                <div id="favorites-link">
+                    @Html.ActionLink("Favorite Photos", "FavoritesSlideShow", "Photo")
+                </div>
+            }
         </div>
 
         <div>
