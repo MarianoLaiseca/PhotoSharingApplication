@@ -47,6 +47,7 @@ namespace PhotoSharingApplication.Controllers
             return PartialView("_CommentsForPhoto", comments.ToList());
         }
 
+        [Authorize]
         public PartialViewResult _Create(int PhotoId)
         {
             Comment newComment = new Comment();
@@ -57,6 +58,7 @@ namespace PhotoSharingApplication.Controllers
 
         //
         // GET: /Comment/Delete/5
+        [Authorize]
         public ActionResult Delete(int id = 0)
         {
             Comment comment = context.FindCommentById(id);
