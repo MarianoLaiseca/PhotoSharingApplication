@@ -13,5 +13,10 @@ namespace PhotoSharingApplication.Controllers
         {
             return View();
         }
+
+        public ActionResult PruebaGit()
+        {
+            return View();
+        }
     }
 }
